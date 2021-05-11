@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+  background: #f0f2f5;
+
+  header {
+    height: 64px;
+    padding: 0 50px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 64px;
+    background: #001529;
+  }
+}
+.content {
+  padding: 15px;
+  display: flex;
+
+  & > div {
+    flex: 1;
+  }
+
+  & > div:first-child {
+    margin-right: 15px;
+  }
+}

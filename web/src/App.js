@@ -1,11 +1,9 @@
 import React from "react";
-import { Col, Input, Layout, Row } from "antd";
-const { Header, Footer, Sider, Content } = Layout;
-const { Search } = Input;
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { getStreams } from "../services/probe.service";
-
+import "./App.less";
+import { Input } from "./components/Input";
 class App extends React.Component {
   state = {
     content: "",
@@ -13,7 +11,7 @@ class App extends React.Component {
       return classNames.reduce((styleObject, className) => {
         return {...styleObject, ...style[className]};
       }, {});
-    }`
+    }`,
   };
 
   onSearch = (value) => {
@@ -29,7 +27,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Layout>
+        <div className="layout">
+          <header>Header</header>
+          <main>
+            <div>
+              <Input onSearch={this.onSearch} />
+            </div>
+            <div className="content">
+              <div>
+                <SyntaxHighlighter language="json" style={vs}>
+                  {this.state.content}
+                </SyntaxHighlighter>
+              </div>
+              <div></div>
+            </div>
+          </main>
+        </div>
+        {/* <Layout>
           <Header>Header</Header>
           <Content>
             <div>
@@ -41,18 +55,16 @@ class App extends React.Component {
                 onSearch={this.onSearch}
               />
             </div>
-            <div>
-              <Row>
-                <Col span={12}></Col>
-                <Col span={12}>
+            <div className="content">
+              <div>
                 <SyntaxHighlighter language="json" style={vs}>
-                    {this.state.content}
-                    </SyntaxHighlighter>
-                </Col>
-              </Row>
+                  {this.state.content}
+                </SyntaxHighlighter>
+              </div>
+              <div></div>
             </div>
           </Content>
-        </Layout>
+        </Layout> */}
       </div>
     );
   }

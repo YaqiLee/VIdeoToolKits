@@ -1,1 +1,14 @@
-@import '~antd/dist/antd.less';
+* {
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=number], input[type=password], input[type=text], textarea {
+    -webkit-appearance: none;
+}
+
+input:placeholder-shown {
+  text-overflow: ellipsis;
+}
