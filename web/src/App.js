@@ -1,25 +1,18 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { getStreams } from "../services/probe.service";
 import "./App.less";
 import { Input } from "./components/Input";
 class App extends React.Component {
   state = {
-    content: "",
-    str: `function createStyleObject(classNames, style) {
-      return classNames.reduce((styleObject, className) => {
-        return {...styleObject, ...style[className]};
-      }, {});
-    }`,
+    content: ""
   };
 
   onSearch = (value) => {
     getStreams(value).then((ret) => {
       this.setState({
-        content: `
-        ${ret.data}
-      `,
+        content: `${ret.data}`,
       });
     });
   };
@@ -35,7 +28,7 @@ class App extends React.Component {
             </div>
             <div className="content">
               <div>
-                <SyntaxHighlighter language="json" style={vs}>
+                <SyntaxHighlighter language="json" style={dark}>
                   {this.state.content}
                 </SyntaxHighlighter>
               </div>

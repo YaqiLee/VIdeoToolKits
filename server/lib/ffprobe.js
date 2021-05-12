@@ -14,6 +14,7 @@ var probe = {
         "json",
       ]);
       ls.stdout.on("data", (data) => {
+        console.log(JSON.stringify(data.toString()));
         resolve(data.toString());
       });
       ls.stderr.on("data", (data) => {

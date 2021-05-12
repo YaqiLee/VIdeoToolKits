@@ -13,7 +13,7 @@ app.get("/streams", function (req, res) {
   probe
     .showStreams(url)
     .then((data) => {
-      res.header({"content-type": "text/plain"})
+      res.header({"content-type": "text/html"})
       res.send(data)
     })
     .catch((err) => {

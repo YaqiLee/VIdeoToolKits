@@ -11,5 +11,5 @@ app.use(cors());
 app.use("/probe", probeRoutes)
 
 app.listen(8888, () => {
-  console.log("listening at 8080");
+  console.log("listening at 8888");
 });
