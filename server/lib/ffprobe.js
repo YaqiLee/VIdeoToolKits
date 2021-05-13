@@ -1,28 +1,23 @@
-const { spawn } = require("child_process");
+const { spawn, spawnSync } = require("child_process");
 var ls;
 
 var probe = {
   showStreams(input) {
     return new Promise((resolve, reject) => {
-      ls = spawn("ffprobe", [
-        "-i",
-        input,
-        "-show_streams",
-        "-v",
-        "quiet",
-        "-of",
-        "json",
-      ]);
-      ls.stdout.on("data", (data) => {
-        console.log(JSON.stringify(data.toString()));
-        resolve(data.toString());
-      });
-      ls.stderr.on("data", (data) => {
-        console.error(`stderr: ${data}`);
-      });
-      ls.on("close", (code) => {
-        console.log(`子进程退出，退出码 ${code}`);
-      });
+      try {
+        ls = spawnSync("ffprobe", [
+          "-i",
+          input,
+          "-show_streams",
+          "-v",
+          "quiet",
+          "-of",
+          "json",
+        ]);
+        resolve(ls.stdout.toString());
+      } catch (error) {
+        reject(error)
+      }
     });
   },
 };
