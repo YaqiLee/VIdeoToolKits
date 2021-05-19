@@ -8,7 +8,7 @@ var probe = {
         ls = spawnSync("ffprobe", [
           "-i",
           input,
-          "-show_streams",
+          "-show_format",
           "-v",
           "quiet",
           "-of",
